@@ -38,6 +38,38 @@ function addOrSaveRowItem() {
     localStorage.orderData = JSON.stringify(orderDataJson);
 
  }
+
+ function filterOrders(jqueryOrdersObject, filterValue){
+
+    //  console.log('Current Value:', filterValue);
+    //  console.log('jqueryOrdersObject:', jqueryOrdersObject);
+    console.log('this :', this);
+    
+    jqueryOrdersObject.each(function() {
+
+        var orderValue = parseInt($(this).find('td:eq(1)').text());
+        if (filterValue == 0 || orderValue >= filterValue) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+    });
+ }
+
+$('#orderValueSlider').on('input', function() {
+    var currentValue = $(this).val();
+    if(parseInt(currentValue) == 0){
+
+        $('#rangeValue').text('Show All');
+    } else {
+
+        $('#rangeValue').text(currentValue);
+    }
+    var orderjQueryObject = $(".table tbody").find("tr");
+
+    filterOrders(orderjQueryObject, currentValue);
+});
+
 $("#AddOrderBtn").on("click", function() {
     // let rowHTML = `
     // <tr id="row'+i+'"> 
