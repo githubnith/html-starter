@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Filter Orders</h5>
                         <label for="orderValueSlider" class="form-label">Order Value</label>
-                        <input type="range" class="form-range" id="orderValueSlider" min="0" max="10000" step="100" value="100">
-                        <span id="rangeValue">100</span>
+                        <input type="range" class="form-range" id="orderValueSlider" min="0" max="10000" step="100" value="0">
+                        <span id="rangeValue">Show All</span>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="d-flex justify-content-end mb-2">
                     <button type="button" class="btn btn-primary me-2" id="SaveBtn">Save</button>
                     <button type="button" class="btn btn-primary me-2" id="AddOrderBtn">Add Order</button>
-                    <input type="text" class="form-control w-auto" placeholder="Search Orders">
+                    <input type="text" class="form-control w-auto" id="SearchOrder" placeholder="Search Order ID">
                 </div>
                 <!-- Table -->
                 <table class="table">

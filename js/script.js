@@ -8,7 +8,7 @@ function addOrSaveRowItem() {
     let orderQtyArray = '';
     
     $(this).parent('td').parent('tr').find('input[type=text]').each(function(){
-        console.log(this.id);
+        // console.log(this.id);
         if(this.id.startsWith("orderID")){
             orderIDArray = [$(this).parent('td').parent('tr').id, this.value];
         } else if (this.id.startsWith("orderValue")) {
@@ -22,9 +22,9 @@ function addOrSaveRowItem() {
     orderID =orderIDArray[1];
     orderValue =orderValueArray[1];
     orderQty =orderQtyArray[1];
-    console.log("orderID =" + orderID);
-    console.log("orderValue =" + orderValue);
-    console.log("orderQty =" +orderQty);
+    // console.log("orderID =" + orderID);
+    // console.log("orderValue =" + orderValue);
+    // console.log("orderQty =" +orderQty);
 
     let rowNumber = this.id;
     $(this).parent('td').parent('tr').replaceWith('<tr class="to-save" id="'+rowNumber+'"><td id="orderID'+rowNumber+'">'+orderID+'</td> <td id="orderValue'+rowNumber+'">'+orderValue+'</td> <td id="orderQty'+rowNumber+'">'+orderQty+'</td> <td>   <button class="btn btn-sm btn-primary btn-edit" id="'+rowNumber+'">Edit</button>  <button class="btn btn-sm btn-danger" id="'+rowNumber+'">Delete</button> </td></tr>');
@@ -43,7 +43,7 @@ function addOrSaveRowItem() {
 
     //  console.log('Current Value:', filterValue);
     //  console.log('jqueryOrdersObject:', jqueryOrdersObject);
-    console.log('this :', this);
+    // console.log('this :', this);
     
     jqueryOrdersObject.each(function() {
 
@@ -55,6 +55,27 @@ function addOrSaveRowItem() {
           }
     });
  }
+
+ $("#SearchOrder").keyup(function(){
+    var orderIdInput = this.value;
+    var orderIdInputInt = parseInt(this.value);
+    var orderRowsjObject = $(".table tbody").find("tr");
+
+     orderRowsjObject.each(function() {
+         if (orderIdInput == "") {
+             $(this).show();
+             return;
+         }
+        var orderIDInRow = parseInt($(this).find('td:eq(0)').text());
+        // console.log('this :', this);
+            if(orderIdInputInt == orderIDInRow){
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+    });
+ });
+
 
 $('#orderValueSlider').on('input', function() {
     var currentValue = $(this).val();
@@ -97,7 +118,7 @@ $("#AddOrderBtn").on("click", function() {
     let orderQtyArray = '';
 
     $(this).parent('td').parent('tr').find('td').each(function(){
-        console.log(" edit IDs " + this.id);
+        // console.log(" edit IDs " + this.id);
         if(this.id.startsWith("orderID")){
             orderIDArray = [$(this).parent('td').parent('tr').id, $(this).text()];
         } else if (this.id.startsWith("orderValue")) {
@@ -121,7 +142,7 @@ $("#AddOrderBtn").on("click", function() {
 
     const $rows = $('.table').find('tr.to-save');
     rowsBefore = $rows;
-    console.log(rowsBefore.toArray());
+    // console.log(rowsBefore.toArray());
     // const headers = $rows.splice(0, 1); // header rows
     // rowsAfter = $rows;
     // console.log(rowsAfter.toArray());
@@ -152,7 +173,7 @@ $("#AddOrderBtn").on("click", function() {
         orderData['rowData'].push(rowDetail);
     });
 
-    console.log(orderData);
+    // console.log(orderData);
     saveToLocalStorage(orderData);
  });
 });
